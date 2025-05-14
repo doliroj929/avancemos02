@@ -1,3 +1,36 @@
 {
-  "usuarios": []
+    "usuarios": [
+        {
+            "nombre_usuario": "1",
+            "clave_ingreso": "1",
+            "provincia": "Almeria",
+            "correo": "01@ejemplo.com",
+            "tipo_usuario": "colaborador y cliente",
+            "servicios_publicados": []
+        },
+        {
+            "nombre_usuario": "2",
+            "clave_ingreso": "2",
+            "provincia": "Cadiz",
+            "correo": "02@ejemplo.com",
+            "tipo_usuario": "colaborador y cliente",
+            "servicios_publicados": []
+        },
+        {
+            "nombre_usuario": "3",
+            "clave_ingreso": "3",
+            "provincia": "Cordoba",
+            "correo": "03@ejemplo.com",
+            "tipo_usuario": "colaborador y cliente",
+            "servicios_publicados": []
+        },
+        {
+            "nombre_usuario": "daniel",
+            "clave_ingreso": "123",
+            "provincia": "Sevilla",
+            "correo": "danieil@ejemplo.com",
+            "tipo_usuario": "colaborador y cliente",
+            "servicios_publicados": []
+        }
+    ]
 }
