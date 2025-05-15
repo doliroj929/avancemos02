@@ -2,8 +2,6 @@
 
 from datos import cargar_datos
 
-# servicios publicados 
-
 def servicios_publicados():
     datos = cargar_datos()
     encontrados = False
@@ -23,8 +21,6 @@ def servicios_publicados():
     if not encontrados:
         print("No hay servicios publicados.")
 
-from datos import cargar_datos
-
 def servicios_solicitados_global():
     datos = cargar_datos()
     encontrados = False
@@ -32,7 +28,7 @@ def servicios_solicitados_global():
     print("\n--- Servicios solicitados por todos los usuarios ---")
     for usuario in datos["usuarios"]:
         for s in usuario.get("servicios_solicitados", []):
-            nombre_servicio = s.get("nombre_servicio", "Nombre no disponible")
+            nombre_servicio = s.get("nombre_servicio") or s.get("categoria") or "Nombre no disponible"
             descripcion = s.get("descripcion", "Descripción no disponible")
             print(f"servicio solicitado : -{nombre_servicio}-")
             print(f"descripcion : -{descripcion}-")

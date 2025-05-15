@@ -38,6 +38,11 @@
                 {
                     "servicio": "clases de tenis",
                     "descripcion": "clases de tenis"
+                },
+                {
+                    "id": 1,
+                    "nombre_servicio": "clases de ajedrez",
+                    "descripcion": "clases de ajedrez en vivo"
                 }
             ],
             "servicios_solicitados": [
