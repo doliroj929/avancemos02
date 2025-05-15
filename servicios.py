@@ -1,27 +1,45 @@
-# Función para mostrar los servicios publicados
-def servicios_publicados(datos):
-    print("\n--- Servicios Publicados ---")
+# servicios.py
+
+from datos import cargar_datos
+
+# servicios publicados 
+
+def servicios_publicados():
+    datos = cargar_datos()
+    encontrados = False
+
+    print("\n--- Servicios publicados por todos los usuarios ---")
     for usuario in datos["usuarios"]:
-        if usuario["tipo_usuario"] == "colaborador":
-            for servicio in usuario["servicios_publicados"]:
-                print(f"\nCategoría: {servicio['categoria']}")
-                print(f"Descripción: {servicio['descripcion']}")
-                print(f"Correo: {servicio['correo']}")
-                print(f"Provincia: {servicio['provincia']}")
+        for s in usuario.get("servicios_publicados", []):
+            nombre_servicio = s.get("nombre_servicio") or s.get("categoria") or "Nombre no disponible"
+            descripcion = s.get("descripcion", "Descripción no disponible")
+            print(f"servio : -{nombre_servicio}-")
+            print(f"descripcion : -{descripcion}-")
+            print(f"usuario : -{usuario.get('nombre_usuario', 'Desconocido')}-")
+            print(f"correo : -{usuario.get('correo', 'Desconocido')}-")
+            print("-" * 30)
+            encontrados = True
 
-# Función para publicar un servicio
-def publicar_servicio(usuario, datos):
-    print("\n--- Publicar Servicio ---")
-    categoria = chatbot_recomendador()
-    descripcion = input("Describe el servicio que quieres ofrecer: ")
-    correo = input("Introduce tu correo electrónico: ")
+    if not encontrados:
+        print("No hay servicios publicados.")
 
-    servicio = {
-        "categoria": categoria,
-        "descripcion": descripcion,
-        "correo": correo,
-        "provincia": usuario["provincia"]
-    }
-    
-    usuario["servicios_publicados"].append(servicio)
-    print("Servicio publicado correctamente.")
+from datos import cargar_datos
+
+def servicios_solicitados_global():
+    datos = cargar_datos()
+    encontrados = False
+
+    print("\n--- Servicios solicitados por todos los usuarios ---")
+    for usuario in datos["usuarios"]:
+        for s in usuario.get("servicios_solicitados", []):
+            nombre_servicio = s.get("nombre_servicio", "Nombre no disponible")
+            descripcion = s.get("descripcion", "Descripción no disponible")
+            print(f"servicio solicitado : -{nombre_servicio}-")
+            print(f"descripcion : -{descripcion}-")
+            print(f"usuario solicitante : -{usuario.get('nombre_usuario', 'Desconocido')}-")
+            print(f"correo usuario : -{usuario.get('correo', 'Desconocido')}-")
+            print("-" * 30)
+            encontrados = True
+
+    if not encontrados:
+        print("No hay servicios solicitados.")
