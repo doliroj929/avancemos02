@@ -10,6 +10,9 @@ import json
 from menu import menu_principal
 
 
+print("")
+
+
 
 if __name__ == '__main__':
     menu_principal()
