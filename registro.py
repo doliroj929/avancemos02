@@ -2,61 +2,65 @@
 
 from datos import guardar_datos
 
+PROVINCIAS_DISPONIBLES = [
+    "Almería",
+    "Cádiz",
+    "Córdoba",
+    "Granada",
+    "Huelva",
+    "Jaén",
+    "Málaga",
+    "Sevilla"
+]
+
 def registrarse(datos):
-    print("\n--- Registrarse ---")
-    print("Para volver al menú principal en cualquier momento, deja el campo vacío y presiona Enter.")
-
-    while True:
-        nombre_usuario = input("Nombre de usuario (vacío para volver): ")
-        if nombre_usuario == "":
-            print("Volviendo al menú principal...")
+    nombre = input("Nombre de usuario: ")
+    
+    # Verificar si el usuario ya existe
+    for usuario in datos:
+        if usuario.get("nombre_usuario") == nombre:
+            print("Ese nombre ya está en uso.")
             return
 
-        if any(u["nombre_usuario"] == nombre_usuario for u in datos["usuarios"]):
-            print("Este nombre de usuario ya está en uso. Por favor, elige otro.")
+    contrasena = input("Contraseña: ")
+    email = input("Email: ")
+
+    print("\nSelecciona una provincia:")
+    provincias = [
+        "Almería", "Cádiz", "Córdoba", "Granada", 
+        "Huelva", "Jaén", "Málaga", "Sevilla"
+    ]
+    for idx, provincia in enumerate(provincias, 1):
+        print(f"{idx}. {provincia}")
+    try:
+        provincia_idx = int(input("Elige una provincia (número del 1 al 8): ")) - 1
+        if 0 <= provincia_idx < len(provincias):
+            provincia = provincias[provincia_idx]
         else:
-            break
-
-    clave_ingreso = input("Clave de ingreso (vacío para volver): ")
-    if clave_ingreso == "":
-        print("Volviendo al menú principal...")
-        return
-
-    provincias = ["Almería", "Cádiz", "Córdoba", "Granada", "Huelva", "Jaén", "Málaga", "Sevilla"]
-    print("\nSelecciona tu provincia:")
-    for i, provincia in enumerate(provincias, 1):
-        print(f"{i}. {provincia}")
-
-    while True:
-        provincia_input = input("Introduce el número de tu provincia (vacío para volver): ")
-        if provincia_input == "":
-            print("Volviendo al menú principal...")
+            print("Número inválido. Registro cancelado.")
             return
-        try:
-            provincia_num = int(provincia_input)
-            if 1 <= provincia_num <= len(provincias):
-                provincia = provincias[provincia_num - 1]
-                break
-            else:
-                print("Número inválido, intenta de nuevo.")
-        except ValueError:
-            print("Introduce un número válido.")
-
-    correo = input("Introduce tu correo electrónico (vacío para volver): ")
-    if correo == "":
-        print("Volviendo al menú principal...")
+    except ValueError:
+        print("Entrada inválida. Registro cancelado.")
         return
+
+    descripcion = input("Descripción personal (opcional): ")
 
     nuevo_usuario = {
-        "nombre_usuario": nombre_usuario,
-        "clave_ingreso": clave_ingreso,
+        "nombre_usuario": nombre,
+        "contrasena": contrasena,
+        "email": email,
         "provincia": provincia,
-        "correo": correo,
-        "tipo_usuario": "colaborador y cliente",
-        "servicios_publicados": [],
-        "servicios_solicitados": []
+        "descripcion": descripcion,
+        "servicios": [],
+        "solicitudes": []
     }
 
-    datos["usuarios"].append(nuevo_usuario)
+    datos.append(nuevo_usuario)  # Añade el nuevo usuario a la lista
+
+    from datos import guardar_datos
     guardar_datos(datos)
-    print(f"¡Te has registrado como colaborador y cliente en {provincia}!")
+
+    print("¡Registro exitoso!")
+
+
+

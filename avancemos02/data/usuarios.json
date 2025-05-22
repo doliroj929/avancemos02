@@ -1,0 +1,17 @@
+{
+    "usuarios": [],
+    "daniel": {
+        "contrasena": "123",
+        "email": "daniel@ejemplo.com"
+    },
+    "007": {
+        "contrasena": "7",
+        "email": "007@ejemplo.com"
+    },
+    "2": {
+        "contrasena": "2",
+        "email": "2@ejemplo.com",
+        "provincia": "Almer\u00eda",
+        "descripcion": ""
+    }
+}

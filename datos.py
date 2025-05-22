@@ -1,31 +1,25 @@
-# datos.py
-
 import json
 import os
 
-RUTA_ARCHIVO = 'avancemos02/data/usuarios.json'
-
-def asegurar_carpeta():
-    carpeta = os.path.dirname(RUTA_ARCHIVO)
-    if not os.path.exists(carpeta):
-        os.makedirs(carpeta)
+RUTA_ARCHIVO = "data/usuarios.json"
 
 def cargar_datos():
-    try:
-        with open(RUTA_ARCHIVO, 'r') as f:
-            return json.load(f)
-    except FileNotFoundError:
-        print("El archivo no existe. Se creará uno nuevo.")
-        return {"usuarios": []}
-    except json.JSONDecodeError:
-        print("Error leyendo el archivo. Se usará estructura vacía.")
-        return {"usuarios": []}
+    if not os.path.exists(RUTA_ARCHIVO):
+        return []  # Lista vacía si no existe archivo
+
+    with open(RUTA_ARCHIVO, "r", encoding="utf-8") as archivo:
+        try:
+            datos = json.load(archivo)
+            # Comprobamos que sea una lista
+            if isinstance(datos, list):
+                return datos
+            else:
+                print("Error: datos corruptos, se esperaba lista.")
+                return []
+        except json.JSONDecodeError:
+            print("Error: archivo JSON corrupto o vacío.")
+            return []
 
 def guardar_datos(datos):
-    try:
-        asegurar_carpeta()
-        with open(RUTA_ARCHIVO, 'w') as f:
-            json.dump(datos, f, indent=4)
-        print("Datos guardados correctamente.")
-    except Exception as e:
-        print(f"Error al guardar los datos: {e}")
+    with open(RUTA_ARCHIVO, "w", encoding="utf-8") as archivo:
+        json.dump(datos, archivo, indent=4, ensure_ascii=False)

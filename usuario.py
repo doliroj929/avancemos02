@@ -1,106 +1,123 @@
-# usuario.py
-
-from datos import cargar_datos
 from datos import guardar_datos
 
-
-def iniciar_sesion(datos):
-    print("\n--- Iniciar sesión ---")
-    nombre_usuario = input("Nombre de usuario: ")
-    clave_ingreso = input("Clave de ingreso: ")
-
-    usuario = next((u for u in datos["usuarios"] if u["nombre_usuario"] == nombre_usuario), None)
-
-    if usuario:
-        if usuario["clave_ingreso"] == clave_ingreso:
-            print(f"¡Bienvenido, {nombre_usuario}!")
-            return nombre_usuario
-        else:
-            print("Clave incorrecta.")
-    else:
-        print("Usuario no encontrado. Regístrate primero.")
+def buscar_usuario(datos, nombre_usuario):
+    for usuario in datos:
+        if usuario.get("nombre_usuario") == nombre_usuario:
+            return usuario
     return None
 
-#registar servicio 
+def iniciar_sesion(datos):
+    nombre = input("Usuario: ").strip()
+    contrasena = input("Contraseña: ").strip()
+
+    usuario = buscar_usuario(datos, nombre)
+    if usuario and usuario.get("contrasena") == contrasena:
+        print(f"Bienvenido, {nombre}!")
+        return nombre
+    else:
+        print("No coincide usuario o contraseña.")
+        return None
 
 def registrar_servicio(datos, nombre_usuario):
-    usuario = next((u for u in datos["usuarios"] if u["nombre_usuario"] == nombre_usuario), None)
+    usuario = buscar_usuario(datos, nombre_usuario)
     if usuario is None:
         print("Usuario no encontrado.")
         return
 
-    nombre_servicio = input("Introduce el nombre del servicio: ").strip()
-    descripcion = input("Introduce la descripción del servicio: ").strip()
-
-    if "servicios_publicados" not in usuario:
-        usuario["servicios_publicados"] = []
-
-    ids = [s.get("id", 0) for s in usuario["servicios_publicados"]]
-    nuevo_id = max(ids) + 1 if ids else 1
+    titulo = input("Título del servicio: ").strip()
+    descripcion = input("Descripción del servicio: ").strip()
 
     nuevo_servicio = {
-        "id": nuevo_id,
-        "nombre_servicio": nombre_servicio,
+        "titulo": titulo,
         "descripcion": descripcion
     }
 
-    usuario["servicios_publicados"].append(nuevo_servicio)
+    usuario.setdefault("servicios", []).append(nuevo_servicio)
+    guardar_datos(datos)
+    print("¡Servicio publicado correctamente!")
+
+def solicitar_servicio(datos, nombre_usuario):
+    usuario_solicitante = buscar_usuario(datos, nombre_usuario)
+    if usuario_solicitante is None:
+        print("Usuario no encontrado.")
+        return
+
+    print("\nIntroduce el nombre del servicio que quieres solicitar:")
+    servicio_ingresado = input().strip()
+
+    solicitud = {
+        "servicio solicitado": servicio_ingresado,
+        "solicitado por": nombre_usuario
+    }
+
+    # Añadir la solicitud a la lista de solicitudes del usuario
+    usuario_solicitante.setdefault("servicios_solicitados", []).append(solicitud)
+    
     from datos import guardar_datos
     guardar_datos(datos)
-    print(f"Servicio '{nombre_servicio}' registrado correctamente.")
+
+    print(f"✅ Has solicitado el servicio '{servicio_ingresado}' correctamente.")
 
 
 def ver_servicios_publicados(datos, nombre_usuario):
-    usuario = next((u for u in datos["usuarios"] if u["nombre_usuario"] == nombre_usuario), None)
-    if not usuario or not usuario.get("servicios_publicados"):
+    usuario = buscar_usuario(datos, nombre_usuario)
+    if not usuario or not usuario.get("servicios"):
         print("No tienes servicios publicados.")
         return
 
     print("\nTus servicios publicados:")
-    for s in usuario["servicios_publicados"]:
-        nombre = s.get("nombre_servicio") or s.get("categoria") or "Nombre no disponible"
+    for s in usuario["servicios"]:
+        nombre = s.get("titulo") or "Nombre no disponible"
         descripcion = s.get("descripcion", "Descripción no disponible")
         print(f"- {nombre}: {descripcion}")
 
 def ver_servicios_solicitados(datos, nombre_usuario):
-    usuario = next((u for u in datos["usuarios"] if u["nombre_usuario"] == nombre_usuario), None)
+    usuario = buscar_usuario(datos, nombre_usuario)
     if not usuario or not usuario.get("servicios_solicitados"):
         print("No tienes servicios solicitados.")
         return
 
     print("\nTus servicios solicitados:")
-    for s in usuario["servicios_solicitados"]:
-        nombre = s.get("nombre_servicio") or s.get("categoria") or "Nombre no disponible"
-        descripcion = s.get("descripcion", "Descripción no disponible")
-        print(f"- {nombre}: {descripcion}")
+    for idx, s in enumerate(usuario["servicios_solicitados"], 1):
+        servicio = s.get("servicio solicitado", s.get("titulo", "Servicio sin nombre"))
+        solicitante = s.get("solicitado por", nombre_usuario)
+        print(f"{idx}. servicio solicitado : {servicio}")
+        print(f"   solicitado por : {solicitante}\n")
 
+        
+        
+def ver_servicios_publicados_global(datos):
+    print("\n--- Servicios publicados por todos los usuarios ---")
+    servicios_publicados = []
+    for usuario in datos:
+        for servicio in usuario.get("servicios", []):
+            servicios_publicados.append((usuario["nombre_usuario"], servicio))
 
-
-def solicitar_servicio(datos, nombre_usuario):
-    usuario = next((u for u in datos["usuarios"] if u["nombre_usuario"] == nombre_usuario), None)
-    if usuario is None:
-        print("Usuario no encontrado.")
+    if not servicios_publicados:
+        print("No hay servicios publicados aún.")
         return
 
-    print("Introduce el nombre del servicio que quieres solicitar:")
-    nombre_servicio = input().strip()
-    descripcion = input("Descripción del servicio solicitado: ").strip()
+    for idx, (usuario, servicio) in enumerate(servicios_publicados, 1):
+        titulo = servicio.get("titulo", "Sin título")
+        descripcion = servicio.get("descripcion", "Sin descripción")
+        print(f"{idx}. {titulo} - {descripcion} (Publicado por: {usuario})")
 
-    if "servicios_solicitados" not in usuario:
-        usuario["servicios_solicitados"] = []
+def ver_servicios_solicitados_global(datos):
+    todas_solicitudes = []
+    for usuario in datos:
+        solicitudes = usuario.get("servicios_solicitados", [])
+        for solicitud in solicitudes:
+            todas_solicitudes.append({
+                "servicio solicitado": solicitud.get("servicio solicitado", "Sin nombre"),
+                "solicitado por": solicitud.get("solicitado por", usuario.get("nombre_usuario", "Desconocido"))
+            })
 
-    nuevo_id = 1
-    if usuario["servicios_solicitados"]:
-        nuevo_id = max(s["id"] for s in usuario["servicios_solicitados"]) + 1
+    if not todas_solicitudes:
+        print("No hay servicios solicitados por ningún usuario.")
+        return
 
-    nueva_solicitud = {
-        "id": nuevo_id,
-        "nombre_servicio": nombre_servicio,
-        "descripcion": descripcion
-    }
+    print("\n--- Servicios solicitados por todos los usuarios ---")
+    for idx, s in enumerate(todas_solicitudes, 1):
+        print(f"{idx}. servicio solicitado : {s['servicio solicitado']}")
+        print(f"   solicitado por : {s['solicitado por']}\n")
 
-    usuario["servicios_solicitados"].append(nueva_solicitud)
-    guardar_datos(datos)
-    print(f"Has solicitado el servicio '{nombre_servicio}' correctamente.")
-    
-    

@@ -1,57 +1,40 @@
-{
-    "usuarios": [
-        {
-            "nombre_usuario": "1",
-            "clave_ingreso": "1",
-            "provincia": "Almeria",
-            "correo": "01@ejemplo.com",
-            "tipo_usuario": "colaborador y cliente",
-            "servicios_publicados": []
-        },
-        {
-            "nombre_usuario": "2",
-            "clave_ingreso": "2",
-            "provincia": "Cadiz",
-            "correo": "02@ejemplo.com",
-            "tipo_usuario": "colaborador y cliente",
-            "servicios_publicados": []
-        },
-        {
-            "nombre_usuario": "3",
-            "clave_ingreso": "3",
-            "provincia": "Cordoba",
-            "correo": "03@ejemplo.com",
-            "tipo_usuario": "colaborador y cliente",
-            "servicios_publicados": []
-        },
-        {
-            "nombre_usuario": "daniel",
-            "clave_ingreso": "123",
-            "provincia": "Sevilla",
-            "correo": "danieil@ejemplo.com",
-            "tipo_usuario": "colaborador y cliente",
-            "servicios_publicados": [
-                {
-                    "servicio": "clases tenis",
-                    "descripcion": "clases de tenis"
-                },
-                {
-                    "servicio": "clases de tenis",
-                    "descripcion": "clases de tenis"
-                },
-                {
-                    "id": 1,
-                    "nombre_servicio": "clases de ajedrez",
-                    "descripcion": "clases de ajedrez en vivo"
-                }
-            ],
-            "servicios_solicitados": [
-                {
-                    "id": 1,
-                    "nombre_servicio": "clases de filosofia",
-                    "descripcion": "necesito claes de fiosofia"
-                }
-            ]
-        }
-    ]
-}
+[
+    {
+        "nombre_usuario": "daniel",
+        "contrasena": "123",
+        "email": "daniel@ejemplo1.com",
+        "provincia": "Cádiz",
+        "descripcion": "",
+        "servicios": [
+            {
+                "titulo": "clases de ajedrez",
+                "descripcion": "clases de ajedrez por horas"
+            }
+        ],
+        "solicitudes": [],
+        "servicios_solicitados": [
+            {
+                "servicio solicitado": "clases de manejo de la emociones",
+                "solicitado por": "daniel"
+            },
+            {
+                "servicio solicitado": "clases de manejo de emociones",
+                "solicitado por": "daniel"
+            }
+        ]
+    },
+    {
+        "nombre_usuario": "007",
+        "contrasena": "007",
+        "email": "007@ejemplo.com",
+        "provincia": "Sevilla",
+        "descripcion": "",
+        "servicios": [
+            {
+                "titulo": "Servio de serguridad",
+                "descripcion": "Servio de serguridad por horas"
+            }
+        ],
+        "solicitudes": []
+    }
+]
