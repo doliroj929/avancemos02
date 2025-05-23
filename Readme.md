@@ -32,7 +32,7 @@ Additionally, this project aims to help people discover and showcase the skills 
 - 🌐 Internet connection to use the chatbot (OpenRouter.ai).
 - 📦 Install required packages:
 
-```bash
+
 pip install -r requirements.txt
 
 
