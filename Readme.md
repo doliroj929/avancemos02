@@ -35,6 +35,10 @@ Additionally, this project aims to help people discover and showcase the skills 
 
 pip install -r requirements.txt
 
+----
+
+
+
 
 ### ⚙️ Setup
 
@@ -61,6 +65,7 @@ pip install -r requirements.txt
 ### ▶️ Run the project
 `python main.py`
 
+
 ## 💡 Usage Examples
 
 ### ✍️ User Registration
@@ -81,9 +86,11 @@ pip install -r requirements.txt
 
 ### 📢 Publish a Service
 
+
 1.  From the user menu, select **Publish Service**.
+   
     
-2.  Enter a title and description.
+3.  Enter a title and description.
     
 
 ### 📋 View Published Services
