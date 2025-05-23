@@ -1,15 +1,139 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Mi Sitio Avancemos 2.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Avancemos - Project Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        ul li::before {
+            content: "• ";
+            color: #3498db;
+        }
+        pre {
+            background-color: #ecf0f1;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+        code {
+            font-family: monospace;
+            background-color: #ecf0f1;
+            padding: 0 0.3rem;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+    </style>
 </head>
 <body>
-    <h1>¡Hola! Esta es mi página en GitHub Pages desde el repositorio avancemos02.</h1>
-    <p>Estoy aprendiendo a publicar con GitHub Pages.</p>
+
+    <h1>📚 Project Documentation: <strong>Avancemos</strong></h1>
+
+    <section>
+        <h2>🚀 Motivation</h2>
+        <h3>Avancemos</h3>
+        <p>
+            The motivation behind this project is to foster local development and support the circular economy in provinces and municipalities by facilitating the exchange of knowledge and skills. This is achieved through a flexible payment model — cash, barter, or mixed — that connects people with basic or specialized knowledge and promotes collaboration in various activities, such as:
+        </p>
+        <ul>
+            <li>📖 <strong>Classes and Training</strong> (languages, tutoring, music, IT, etc.)</li>
+            <li>👶 <strong>Caregiving</strong> (children, elderly, companionship)</li>
+            <li>🏠 <strong>Household Tasks</strong> (cleaning, small repairs, gardening, cooking)</li>
+            <li>🐕 <strong>Pet Care</strong> (dog walking, pet sitting)</li>
+            <li>💆‍♂️ <strong>Wellness and Health</strong> (massage, yoga, personal training)</li>
+            <li>🎨 <strong>Creativity and Design</strong> (photography, graphic design, crafts)</li>
+            <li>💻 <strong>Technology and Repairs</strong> (computers, mobile phones)</li>
+            <li>🚚 <strong>Transport and Moving</strong> (small deliveries)</li>
+            <li>🎭 <strong>Entertainment and Leisure</strong> (magic shows, storytelling, tour guiding)</li>
+            <li>🌟 <strong>Other Services</strong></li>
+        </ul>
+        <p>Additionally, this project aims to help people discover and showcase the skills they can offer to their community. 🤝🌍</p>
+    </section>
+
+    <section>
+        <h2>⚙️ Deployment Instructions</h2>
+        <h3>🔧 Prerequisites</h3>
+        <ul>
+            <li>🐍 Python 3.8 or higher installed.</li>
+            <li>🌐 Internet connection to use the chatbot (OpenRouter.ai).</li>
+            <li>📦 Install required packages:</li>
+        </ul>
+        <pre><code>pip install -r requirements.txt</code></pre>
+
+        <h3>⚙️ Setup</h3>
+        <ol>
+            <li>📄 Create a <code>.env</code> file in the root folder with your API key:
+                <pre><code>Api_key_digitalizacion=your_api_key_here</code></pre>
+            </li>
+            <li>📂 Clone or download the repository.</li>
+            <li>🐍 (Optional but recommended) Create and activate a virtual environment:
+                <pre><code>python -m venv venv
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows
+                </code></pre>
+            </li>
+            <li>📦 Install dependencies inside the virtual environment:
+                <pre><code>pip install -r requirements.txt</code></pre>
+            </li>
+        </ol>
+
+        <h3>▶️ Run the project</h3>
+        <pre><code>python main.py</code></pre>
+        <p>Interact with the console menu. 🎮</p>
+    </section>
+
+    <section>
+        <h2>💡 Usage Examples</h2>
+
+        <h3>✍️ User Registration</h3>
+        <ol>
+            <li>Select <strong>Register</strong> from the main menu.</li>
+            <li>Enter username, password, email, and province.</li>
+            <li>Optionally add a personal description.</li>
+        </ol>
+
+        <h3>🔑 Login</h3>
+        <ol>
+            <li>Select <strong>Login</strong>.</li>
+            <li>Enter username and password.</li>
+        </ol>
+
+        <h3>📢 Publish a Service</h3>
+        <ol>
+            <li>From the user menu, select <strong>Publish Service</strong>.</li>
+            <li>Enter a title and description.</li>
+        </ol>
+
+        <h3>📋 View Published Services</h3>
+        <p>From either the main or user menu, view all services published by users. 👀</p>
+
+        <h3>🤝 Request a Service</h3>
+        <ol>
+            <li>In the user menu, select <strong>Request Service</strong>.</li>
+            <li>Enter the service you want to request.</li>
+            <li>Your request will be recorded with your user info.</li>
+        </ol>
+
+        <h3>🤖 Chatbot “What can I offer?”</h3>
+        <p>Ask the chatbot for personalized ideas based on your skills and interests.</p>
+
+    </section>
+
 </body>
 </html>
-
 
 
     
