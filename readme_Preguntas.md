@@ -5,7 +5,7 @@
 
   
 
-**>** **Fomentar el desarrollo local** mediante la conexión de personas dentro de provincias y municipios para impulsar la economía circula
+>Fomentar el desarrollo local mediante la conexión de personas dentro de provincias y municipios para impulsar la economía circula
 
   
 
