@@ -35,7 +35,6 @@ Additionally, this project aims to help people discover and showcase the skills 
 ```bash
 pip install -r requirements.txt
 
-----------------
 
 ### ⚙️ Setup
 
