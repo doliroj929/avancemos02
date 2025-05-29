@@ -1,6 +1,6 @@
-# How to Contribute to Avancemos
+# How to Contribute to Avancemos 2.0
 
-Thank you for your interest in contributing to the **Avancemos** project. Below you will find simple instructions on how to participate, even if you have no experience using GitHub or programming.
+Thank you for your interest in contributing to the **Avancemos 2.0** project. Below you will find simple instructions on how to participate, even if you have no experience using GitHub or programming.
 
 ---
 
@@ -57,7 +57,7 @@ If you are looking for ideas on how to help, here are some suggestions:
 
 ---
 
-Thank you for wanting to be part of **Avancemos**. Your collaboration is essential for the project’s growth and improvement every day.
+Thank you for wanting to be part of **Avancemos 2.0**. Your collaboration is essential for the project’s growth and improvement every day.
 
 ---
 
